@@ -4,7 +4,6 @@ from torch.utils.data import random_split, DataLoader
 import torch.nn as nn
 from tqdm import tqdm
 
-from bart_model import Bart
 from bart_dataset import BartDataset
 from transformers import AdamW, get_linear_schedule_with_warmup
 from transformers import BartForSequenceClassification

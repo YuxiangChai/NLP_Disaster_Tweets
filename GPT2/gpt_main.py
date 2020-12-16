@@ -4,7 +4,6 @@ from torch.utils.data import random_split, DataLoader
 import torch.nn as nn
 from tqdm import tqdm
 
-from gpt_model import GPT2
 from gpt_dataset import GPT2Dataset
 from transformers import AdamW, get_linear_schedule_with_warmup
 from transformers import GPT2ForSequenceClassification
@@ -43,7 +42,11 @@ def val(model, loader):
             input_ids = data[0].to(device)
             attention_mask = data[1].to(device)
             label = data[2].to(device)
-            output = model(input_ids=input_ids, attention_mask=attention_mask, labels=label)
+            try:
+                output = model(input_ids=input_ids, attention_mask=attention_mask, labels=label)
+            except:
+                print(input_ids)
+                raise Exception('error')
             loss, logits = output.loss, output.logits
             _, pred = torch.max(logits, dim=1)
             for j in range(len(pred)):
@@ -83,7 +86,7 @@ def main():
     parser.add_argument('--train', type=str, default='../data/disaster_response_messages_training.csv')
     parser.add_argument('--test', type=str, default='../data/disaster_response_messages_test.csv')
     parser.add_argument('--validation', type=str, default='../data/disaster_response_messages_validation.csv')
-    parser.add_argument('--epoch', type=str, default='10')
+    parser.add_argument('--epoch', type=str, default='1')
     args = parser.parse_args()
     
     EPOCH = int(args.epoch)
@@ -91,12 +94,13 @@ def main():
     # create data loader for training and validation
     train_set = GPT2Dataset(args.train)
     val_set = GPT2Dataset(args.validation)
-    train_loader = DataLoader(train_set, batch_size=1, shuffle=True)
-    val_loader = DataLoader(val_set, batch_size=1, shuffle=False)
+    train_loader = DataLoader(train_set, batch_size=20, shuffle=False)
+    val_loader = DataLoader(val_set, batch_size=20, shuffle=False)
 
     print('Train data Loaded.')
 
     model = GPT2ForSequenceClassification.from_pretrained('gpt2', num_labels=2)
+    model.config.pad_token_id = model.config.eos_token_id
 
     optimizer = AdamW(model.parameters(), lr=2e-5, correct_bias=False)
     total_steps = len(train_loader) * EPOCH
@@ -113,7 +117,7 @@ def main():
         val(model, val_loader)
 
     tqdm.write('\nFinal test...')
-    test_set = DSMDataset(args.test)
+    test_set = GPT2Dataset(args.test)
     test_loader = DataLoader(test_set, batch_size=20)
     test(model, test_loader)
 

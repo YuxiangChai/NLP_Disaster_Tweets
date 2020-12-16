@@ -9,6 +9,7 @@ class GPT2Dataset(data.Dataset):
         super(GPT2Dataset, self).__init__()
         self.tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
         self.tokenizer.pad_token = self.tokenizer.eos_token
+        self.tokenizer.padding_side = "left"
         self.path = path
         self.sentences = []
         self.labels = []
@@ -54,3 +55,7 @@ class GPT2Dataset(data.Dataset):
     
     def __getitem__(self, index):
         return self.tokens[index], self.attention_masks[index], self.labels[index]
+
+
+# c = GPT2Dataset('/home/chai/Documents/final_project/NLP_Disaster_Tweets/data/disaster_response_messages_training.csv')
+# print(c[9819])
