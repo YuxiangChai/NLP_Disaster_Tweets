@@ -36,7 +36,7 @@ class BertDataset(data.Dataset):
                 self.labels.append(0)
             encoding = self.tokenizer.encode_plus(
                 dic['message'],
-                max_length=150,
+                max_length=100,
                 truncation=True,
                 add_special_tokens=True,
                 return_token_type_ids=False,
