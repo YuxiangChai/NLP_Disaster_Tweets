@@ -51,11 +51,7 @@ def val(model, loader):
             input_ids = data[0].to(device)
             attention_mask = data[1].to(device)
             label = data[2].to(device)
-            try:
-                output = model(input_ids=input_ids, attention_mask=attention_mask, labels=label)
-            except:
-                print(input_ids)
-                raise Exception('error')
+            output = model(input_ids=input_ids, attention_mask=attention_mask, labels=label)
             loss, logits = output.loss, output.logits
             _, pred = torch.max(logits, dim=1)
             for j in range(len(pred)):
