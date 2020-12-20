@@ -2,39 +2,39 @@ import matplotlib.pyplot as plt
 import pickle
 
 
-with open('bart_loss.p', 'rb') as f:
+with open('bart/bart_loss.p', 'rb') as f:
     bart_loss = pickle.load(f)
-with open('bert_loss.p', 'rb') as f:
+with open('bert/bert_loss.p', 'rb') as f:
     bert_loss = pickle.load(f)
-with open('gpt2_loss.p', 'rb') as f:
+with open('gpt2/gpt2_loss.p', 'rb') as f:
     gpt2_loss = pickle.load(f)
-with open('roberta_loss.p', 'rb') as f:
+with open('roberta/roberta_loss.p', 'rb') as f:
     roberta_loss = pickle.load(f)
-with open('xlnet_loss.p', 'rb') as f:
+with open('xlnet/xlnet_loss.p', 'rb') as f:
     xlnet_loss = pickle.load(f)
 
 
-with open('bart_test_result.p', 'rb') as f:
+with open('bart/bart_test_result.p', 'rb') as f:
     bart_test_accuracy, bart_correct_0, bart_wrong_0, bart_correct_1, bart_wrong_1 = pickle.load(f)
-with open('bert_test_result.p', 'rb') as f:
+with open('bert/bert_test_result.p', 'rb') as f:
     bert_test_accuracy, bert_correct_0, bert_wrong_0, bert_correct_1, bert_wrong_1 = pickle.load(f)
-with open('gpt2_test_result.p', 'rb') as f:
+with open('gpt2/gpt2_test_result.p', 'rb') as f:
     gpt2_test_accuracy, gpt2_correct_0, gpt2_wrong_0, gpt2_correct_1, gpt2_wrong_1 = pickle.load(f)
-with open('roberta_test_result.p', 'rb') as f:
+with open('roberta/roberta_test_result.p', 'rb') as f:
     roberta_test_accuracy, roberta_correct_0, roberta_wrong_0, roberta_correct_1, roberta_wrong_1 = pickle.load(f)
-with open('xlnet_test_result.p', 'rb') as f:
+with open('xlnet/xlnet_test_result.p', 'rb') as f:
     xlnet_test_accuracy, xlnet_correct_0, xlnet_wrong_0, xlnet_correct_1, xlnet_wrong_1 = pickle.load(f)
 
 
-with open('bart_val_accuracy.p', 'rb') as f:
+with open('bart/bart_val_accuracy.p', 'rb') as f:
     bart_val_accuracy = pickle.load(f)
-with open('bert_val_accuracy.p', 'rb') as f:
+with open('bert/bert_val_accuracy.p', 'rb') as f:
     bert_val_accuracy = pickle.load(f)
-with open('gpt2_val_accuracy.p', 'rb') as f:
+with open('gpt2/gpt2_val_accuracy.p', 'rb') as f:
     gpt2_val_accuracy = pickle.load(f)
-with open('roberta_val_accuracy.p', 'rb') as f:
+with open('roberta/roberta_val_accuracy.p', 'rb') as f:
     roberta_val_accuracy = pickle.load(f)
-with open('xlnet_val_accuracy.p', 'rb') as f:
+with open('xlnet/xlnet_val_accuracy.p', 'rb') as f:
     xlnet_val_accuracy = pickle.load(f)
 
 

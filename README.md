@@ -53,12 +53,12 @@ $ python draw_result.py
 
 Loss V.S. Epoch:
 
-![loss vs epoch](loss_epoch.png)
+![loss vs epoch](results/loss_epoch.png)
 
 Validation Accuracy V.S. Epoch:
 
-![val_accuracy vs epoch](val_accuracy_epoch.png)
+![val_accuracy vs epoch](results/val_accuracy_epoch.png)
 
 Test Accuracy V.S. Model
 
-![test_accuracy vs model](test_accuracy.png)
+![test_accuracy vs model](results/test_accuracy.png)
